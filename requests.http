@@ -1,0 +1,16 @@
+@base = http://localhost:3002/api/v1
+@student = ВСТАВТЕ_student_З_tokens.local.json
+@admin = ВСТАВТЕ_admin_З_tokens.local.json
+### Готовність
+GET {{base}}/health
+### Без токена: 401
+GET {{base}}/admin/users
+### Student: після завершення 403
+GET {{base}}/admin/users
+Authorization: Bearer {{student}}
+### Admin: 200
+GET {{base}}/admin/users
+Authorization: Bearer {{admin}}
+### Неправильний токен: 401
+GET {{base}}/admin/users
+Authorization: Bearer not-a-jwt

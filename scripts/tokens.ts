@@ -1,0 +1,11 @@
+import { randomBytes } from 'node:crypto';
+import { existsSync,writeFileSync } from 'node:fs';
+import { config } from 'dotenv';
+import jwt from 'jsonwebtoken';
+if(!existsSync('.env.local')) writeFileSync('.env.local',`JWT_SECRET=${randomBytes(48).toString('hex')}\n`);
+config({path:'.env.local'});
+const secret=process.env.JWT_SECRET;if(!secret || secret.length<32)throw new Error('Invalid JWT_SECRET');
+const token=(id:string,role:string)=>jwt.sign({roles:[role]},secret,{algorithm:'HS256',subject:id,issuer:'pr09-local',audience:'studyflow',expiresIn:'2h'});
+const tokens={student:token('2','STUDENT'),admin:token('1','ADMIN')};
+writeFileSync('tokens.local.json',JSON.stringify(tokens,null,2));
+console.log('Local tokens (2h) saved to tokens.local.json. Do not submit this file.');

@@ -1,0 +1,32 @@
+{
+  "name": "studyflow-f-p09-start",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "dev": "tsc && node dist/src/main.js",
+    "start": "node dist/src/main.js",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "tokens": "node --import tsx scripts/tokens.ts",
+    "check": "tsc && node dist/scripts/check.js"
+  },
+  "dependencies": {
+    "@nestjs/common": "11.1.6",
+    "@nestjs/core": "11.1.6",
+    "@nestjs/platform-express": "11.1.6",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2",
+    "jsonwebtoken": "9.0.2",
+    "dotenv": "16.4.7"
+  },
+  "devDependencies": {
+    "typescript": "5.7.3",
+    "tsx": "4.19.3",
+    "@types/node": "22.13.10",
+    "@types/express": "5.0.0",
+    "@types/jsonwebtoken": "9.0.8"
+  }
+}
